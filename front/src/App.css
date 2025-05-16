@@ -1,0 +1,14 @@
+#root {
+  max-width: 1280px;
+}
+
+.splitter {
+  width: 4px !important;
+  min-width: 0 !important;
+  background-color: hsl(var(--muted)) !important;
+  transition: background-color .2s ease-in-out 0.3s !important;
+}
+
+.splitter:hover {
+  background-color: hsl(var(--foreground)) !important;
+}
