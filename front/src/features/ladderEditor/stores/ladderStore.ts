@@ -1,61 +1,49 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
-import { nanoid } from "nanoid";
-import type { IElement, LadderStore } from '../types'
+import { v4 as uuidv4 } from "uuid";
+import type { IRung } from '../types'
 
-const createId = () => nanoid(8);
+export interface LadderProgram {
+    rungs: IRung[];
+}
+
+export interface LadderStore {
+    // State
+    program: LadderProgram;
+
+    // Variable Operations
+    // addInput: (input: Omit<InputVariable, "id">) => string;
+    addRung: () => string;
+}
 
 export const useLadderStore = create<LadderStore>()(
     immer((set, get) => ({
         program: {
-            variables: {
-                inputs: [],
-                outputs: [],
-                coils: [],
-                timers: [],
-                counters: []
-            },
             rungs: []
-        },
-        selection: {
-            selectedElementId: null,
-            selectedRungId: null,
-            activeVariableType: null
-        },
-        editor: {
-            grid: {
-                size: 20,
-                visible: true
-            },
-            mode: "select",
-            dragInfo: {
-                isDragging: false,
-                elementType: null,
-                sourceElementId: null
-            }
         },
 
         // Variable Operations
-        addInput: (input) => {
-            const id = `I${get().program.variables.inputs.length}`;
-            set(state => {
-                state.program.variables.inputs.push({
-                    id,
-                    ...input
-                });
-            });
-            return id;
-        },
+        // addInput: (input) => {
+        //     const id = `I${get().program.variables.inputs.length}`;
+        //     set(state => {
+        //         state.program.variables.inputs.push({
+        //             id,
+        //             ...input
+        //         });
+        //     });
+        //     return id;
+        // },
         addRung: () => {
-            const id = createId();
+            const id = uuidv4();
             set(state => {
                 state.program.rungs.push({
-                    id,
+                    id: id,
                     number: state.program.rungs.length + 1,
                     elements: [],
                     branches: []
                 });
             });
+
             return id;
         }
     }))

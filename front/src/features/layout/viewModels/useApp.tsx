@@ -44,7 +44,6 @@ function useApp() {
                 borderEnableAutoHide: true,
                 splitterSize: 0,
                 splitterExtra: 5,
-                enableRotateBorderIcons: true,
                 borderAutoSelectTabWhenOpen: true,
                 tabEnableRename: true,
                 tabMinWidth: 200,
@@ -163,19 +162,19 @@ function useApp() {
     }
 
     const icons = {
-        closeTabset: () => <TooltipButton tooltipText='Close Tabset' size={'icon'} variant={'ghost'}>
+        closeTabset: () => <TooltipButton className="w-6 p-1" asChild tooltipText='Close Tabset' size={'icon'} variant={'ghost'}>
             <X className='text-primary' />
         </TooltipButton>,
-        close: () => <TooltipButton tooltipText='Close' size={'icon'} variant={'ghost'}>
+        close: () => <TooltipButton asChild className="w-6 p-1" tooltipText='Close' size={'icon'} variant={'ghost'}>
             <X className='text-primary' />
         </TooltipButton>,
-        maximize: () => <TooltipButton tooltipText='Maximize' size={'icon'} variant={'ghost'}>
+        maximize: () => <TooltipButton asChild className="w-6 p-1" tooltipText='Maximize' size={'icon'} variant={'ghost'}>
             <Maximize className='text-primary' />
         </TooltipButton>,
-        restore: () => <TooltipButton tooltipText='Minimize' size={'icon'} variant={'ghost'}>
+        restore: () => <TooltipButton asChild className="w-6 p-1" tooltipText='Minimize' size={'icon'} variant={'ghost'}>
             <Minimize className='text-primary' />
         </TooltipButton>,
-        popout: () => <TooltipButton tooltipText='Open in new Tab' size={'icon'} variant={'ghost'}>
+        popout: () => <TooltipButton asChild className="w-6 p-1" tooltipText='Open in new Tab' size={'icon'} variant={'ghost'}>
             <PictureInPicture className='text-primary' />
         </TooltipButton>
     }

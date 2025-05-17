@@ -1,32 +1,60 @@
-import { Dialog, DialogClose, DialogContent, DialogHeader, DialogOverlay, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { useState } from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import VariableForm from "./VariableForm";
+import { useVariableStore } from "../../stores/variableStore";
 
 function VariableDialog() {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const { editingVariable, setEditingVariable } = useVariableStore();
+
+    useEffect(() => {
+        if (editingVariable) {
+            setIsDialogOpen(true);
+        }
+    }, [editingVariable]);
+
+    const handleClose = () => {
+        setIsDialogOpen(false);
+
+        if (editingVariable) {
+            setEditingVariable(null);
+        }
+    };
+
+    const handleOpenchange = (open: boolean) => {
+        setIsDialogOpen(open);
+        if (!open) {
+            setEditingVariable(null);
+        }
+    }
+
     return (
-        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-            <DialogTrigger className="btn">Add Variable</DialogTrigger>
-            <DialogOverlay />
-            <DialogContent>
+        <Dialog open={isDialogOpen} onOpenChange={handleOpenchange}>
+            <DialogTrigger asChild>
+                <Button variant="default">Add Variable</Button>
+            </DialogTrigger>
+
+            <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Add Variable</DialogTitle>
+                    <DialogTitle>
+                        {editingVariable ? "Edit Variable" : "Add Variable"}
+                    </DialogTitle>
                 </DialogHeader>
-                <div className="flex flex-col gap-4">
-                    <label htmlFor="description">Description</label>
-                    <input type="text" id="description" className="input" />
-                    <label htmlFor="type">Type</label>
-                    <select id="type" className="select">
-                        <option value="int">Integer</option>
-                        <option value="float">Float</option>
-                        <option value="string">String</option>
-                    </select>
-                    <label htmlFor="initial">Initial Value</label>
-                    <input type="number" id="initial" className="input" />
+
+                <div className="py-4">
+                    <VariableForm
+                        existingVariable={editingVariable}
+                        onSubmit={handleClose}
+                    />
                 </div>
-                <DialogClose className="btn mt-4">Add</DialogClose>
+
+                <div className="flex justify-end">
+                    <Button variant="outline" onClick={handleClose}>Cancel</Button>
+                </div>
             </DialogContent>
         </Dialog>
-    )
+    );
 }
 
-export default VariableDialog
+export default VariableDialog;

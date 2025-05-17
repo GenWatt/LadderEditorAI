@@ -1,4 +1,4 @@
-import type { IElement } from "../../stores/ladderStore"
+import type { IElement } from "../../types"
 
 export interface CoilProps extends React.HTMLProps<HTMLDivElement> {
     element?: IElement

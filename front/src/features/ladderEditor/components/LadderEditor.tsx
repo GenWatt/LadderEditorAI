@@ -8,6 +8,7 @@ function LadderEditor() {
 
     useEffect(() => {
         if (program.rungs.length === 0) {
+            console.log("Adding initial rung");
             addRung();
         }
     }, []);

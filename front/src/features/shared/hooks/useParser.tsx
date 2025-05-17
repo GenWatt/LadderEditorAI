@@ -39,8 +39,13 @@ function useParser() {
         return createParsedMessage(statusMessages.length > 0, statusMessages.join('\n'), contentTokens);
     };
 
+    const getValueString = (value: string | number | boolean) => {
+        return typeof value === 'boolean' ? (value ? 'True' : 'False') : value.toString();
+    }
+
     return {
-        parseMessageContent
+        parseMessageContent,
+        getValueString
     }
 }
 

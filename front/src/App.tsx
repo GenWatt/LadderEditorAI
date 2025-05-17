@@ -9,6 +9,8 @@ import 'flexlayout-react/style/light.css';
 import useApp from './features/layout/viewModels/useApp'
 import { Layout } from 'flexlayout-react';
 import ActionBar from './features/ladderEditor/components/ActionBar';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 const queryClient = new QueryClient()
 
@@ -25,16 +27,17 @@ function App() {
             </Appbar>
           </div>
           <div className="flex-1 w-full relative overflow-hidden">
-            {model && (
-              <Layout
-                classNameMapper={classMapperFn}
-                model={model}
-                factory={factory}
-                onModelChange={handleModelChange}
-                realtimeResize={true}
-                icons={icons}
-              />
-            )}
+            <DndProvider backend={HTML5Backend}>
+              {model && (
+                <Layout
+                  classNameMapper={classMapperFn}
+                  model={model}
+                  factory={factory}
+                  onModelChange={handleModelChange}
+                  icons={icons}
+                />
+              )}
+            </DndProvider>
           </div>
         </div>
       </QueryClientProvider>

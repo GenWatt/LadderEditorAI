@@ -11,46 +11,46 @@ export interface GhostElementProps {
 }
 
 function GhostElement({ mousePosition }: GhostElementProps) {
-    const { editor } = useLadderStore();
+    // const { editor } = useLadderStore();
     const ghostRef = useRef<HTMLDivElement>(null);
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
-    useEffect(() => {
-        if (ghostRef.current) {
-            const { offsetWidth, offsetHeight } = ghostRef.current;
-            if (offsetWidth !== dimensions.width || offsetHeight !== dimensions.height) {
-                setDimensions({ width: offsetWidth, height: offsetHeight });
-            }
-        }
-    }, [editor.dragInfo.elementType]);
+    // useEffect(() => {
+    //     if (ghostRef.current) {
+    //         const { offsetWidth, offsetHeight } = ghostRef.current;
+    //         if (offsetWidth !== dimensions.width || offsetHeight !== dimensions.height) {
+    //             setDimensions({ width: offsetWidth, height: offsetHeight });
+    //         }
+    //     }
+    // }, [editor.dragInfo.elementType]);
 
     const ghostElement = useMemo(() => {
-        if (editor.mode !== "addElement" || !editor.dragInfo.isDragging || !editor.dragInfo.elementType) {
-            return null;
-        }
+        // if (editor.mode !== "addElement" || !editor.dragInfo.isDragging || !editor.dragInfo.elementType) {
+        //     return null;
+        // }
 
-        let ghostContent;
+        // let ghostContent;
 
-        switch (editor.dragInfo.elementType) {
-            case ElementType.CONTACT:
-                ghostContent = <Contact />;
-                break;
+        // switch (editor.dragInfo.elementType) {
+        //     case ElementType.CONTACT:
+        //         ghostContent = <Contact />;
+        //         break;
 
-            case ElementType.COIL:
-                ghostContent = <Coil />;
-                break;
+        //     case ElementType.COIL:
+        //         ghostContent = <Coil />;
+        //         break;
 
-            case ElementType.TIMER:
-                ghostContent = <Timer />;
-                break;
+        //     case ElementType.TIMER:
+        //         ghostContent = <Timer />;
+        //         break;
 
-            case ElementType.COUNTER:
-                ghostContent = <Counter />;
-                break;
+        //     case ElementType.COUNTER:
+        //         ghostContent = <Counter />;
+        //         break;
 
-            default:
-                ghostContent = <div>?</div>;
-        }
+        //     default:
+        //         ghostContent = <div>?</div>;
+        // }
 
         return (
             <div
@@ -61,10 +61,10 @@ function GhostElement({ mousePosition }: GhostElementProps) {
                     top: `${mousePosition.y - (dimensions.height / 2)}px`,
                 }}
             >
-                {ghostContent}
+                {/* {ghostContent} */}
             </div>
         );
-    }, [editor, mousePosition, dimensions]);
+    }, [mousePosition, dimensions]);
 
     return ghostElement;
 }

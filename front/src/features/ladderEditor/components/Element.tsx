@@ -11,16 +11,16 @@ export interface ElementProps {
 
 function Element({ element }: ElementProps) {
     let elementContent;
-    const { editor, selectElement, removeElement } = useLadderStore();
+    const { editor } = useLadderStore();
 
     const handleElementClick = (e: React.MouseEvent, elementId: string) => {
         e.stopPropagation();
 
-        if (editor.mode === "select") {
-            selectElement(elementId);
-        } else if (editor.mode === "delete") {
-            removeElement(elementId);
-        }
+        // if (editor.mode === "select") {
+        //     selectElement(elementId);
+        // } else if (editor.mode === "delete") {
+        //     removeElement(elementId);
+        // }
     };
 
     switch (element.type) {

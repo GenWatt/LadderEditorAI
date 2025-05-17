@@ -1,3 +1,5 @@
+import type { IVariable } from "./variableTypes";
+
 // Element Types
 export enum ElementType {
     CONTACT = "contact",
@@ -32,51 +34,6 @@ export enum CounterMode {
 // Type guards for element modes
 export type ElementMode = ContactMode | CoilMode | TimerMode | CounterMode;
 
-// Variable Definitions
-export type IVariable = {
-    id: string;
-    name: string;
-    address: string;
-    description: string;
-    type: ElementType;
-}
-
-export type IBooleanVariable = IVariable & {
-    isOn: boolean;
-    initial: 0 | 1;
-}
-
-export type InputVariable = IVariable & IBooleanVariable & {
-    type: ElementType.CONTACT;
-    mode: ContactMode;
-}
-
-export type OutputVariable = IVariable & IBooleanVariable & {
-    type: ElementType.COIL;
-    mode: CoilMode;
-}
-
-export type CoilVariable = IVariable & IBooleanVariable & {
-    type: ElementType.COIL;
-    mode: CoilMode;
-}
-
-export type TimerVariable = IVariable & {
-    type: ElementType.TIMER;
-    mode: TimerMode;
-    preset: number; // milliseconds
-    accum: number;  // current value
-    base: number;   // time base in milliseconds
-}
-
-// export interface CounterVariable {
-//     id: string;
-//     type: CounterMode;
-//     preset: number; // count
-//     accum: number;  // current value
-//     base: number;   // step value
-// }
-
 // Position for visual elements
 export interface Position {
     x: number;
@@ -87,7 +44,7 @@ export interface Position {
 interface BaseElement {
     id: string;
     position: Position;
-    variableId: string; // Reference to the variable this element uses
+    variable: IVariable | null;
 }
 
 export interface ContactElement extends BaseElement {
@@ -128,16 +85,6 @@ export interface IRung {
 }
 
 // Full Ladder Program
-export interface LadderProgram {
-    variables: {
-        inputs: InputVariable[];
-        outputs: OutputVariable[];
-        coils: CoilVariable[];
-        timers: TimerVariable[];
-        // counters: CounterVariable[];
-    };
-    rungs: IRung[];
-}
 
 // Selection State
 export interface SelectionState {
@@ -160,13 +107,3 @@ export interface EditorState {
     };
 }
 
-export interface LadderStore {
-    // State
-    program: LadderProgram;
-    selection: SelectionState;
-    editor: EditorState;
-
-    // Variable Operations
-    addInput: (input: Omit<InputVariable, "id">) => string;
-    addRung: () => string;
-}
