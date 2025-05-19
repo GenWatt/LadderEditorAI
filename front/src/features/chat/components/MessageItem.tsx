@@ -1,4 +1,4 @@
-import type { Message } from "@/features/shared/types";
+import type { Message } from "@/shared/types";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { ProcessingSteps } from "./ProcessingSteps";

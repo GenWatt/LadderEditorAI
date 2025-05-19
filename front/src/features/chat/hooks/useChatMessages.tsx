@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import type { Message } from "@/features/shared/types";
-import { useStream } from "@/features/shared/hooks/useStream";
+import type { Message } from "@/shared/types";
+import { useStream } from "@/shared/app/hooks/useStream";
 import { useChatStore } from "../store/chatStore";
 
 const DEFAULT_MESSAGES: Message[] = [

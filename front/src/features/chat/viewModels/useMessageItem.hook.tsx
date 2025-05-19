@@ -1,5 +1,5 @@
-import useParser from "@/features/shared/hooks/useParser";
-import type { Message } from "@/features/shared/types";
+import useParser from "@/shared/app/hooks/useParser";
+import type { Message } from "@/shared/types";
 import { useMemo } from "react";
 
 export interface MessageItemHookProps {

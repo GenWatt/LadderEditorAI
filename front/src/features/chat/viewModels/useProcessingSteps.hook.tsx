@@ -1,4 +1,4 @@
-import type { StatusMessage } from "@/features/shared/types";
+import type { StatusMessage } from "@/shared/types";
 import { cn } from "@/lib/utils";
 import { useMemo } from "react";
 import type { IStep } from "../types";

@@ -1,5 +1,5 @@
 import { TooltipButton } from "@/components/ui/tooltip-button";
-import { useLadderEditorStore } from "../stores/editorStore";
+import { useLadderEditorStore } from "../../../shared/editor/stores/editorStore";
 
 function LadderToolbar() {
     const {

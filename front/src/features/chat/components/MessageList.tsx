@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-import type { Message } from "@/features/shared/types";
+import type { Message } from "@/shared/types";
 import MessageItem from "./MessageItem";
 
 interface MessageListProps {

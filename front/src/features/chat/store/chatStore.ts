@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { Message } from "@/features/shared/types";
+import type { Message } from "@/shared/types";
 
 interface ChatState {
     url: string;

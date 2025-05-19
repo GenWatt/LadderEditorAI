@@ -1,4 +1,4 @@
-import type { Message } from "@/features/shared/types";
+import type { Message } from "@/shared/types";
 
 export interface ChatError {
     message: string;

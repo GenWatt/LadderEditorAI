@@ -6,14 +6,13 @@ import {
     MenubarItem,
     MenubarMenu,
     MenubarSeparator,
-    MenubarShortcut,
     MenubarTrigger,
     MenubarSub,
     MenubarSubTrigger,
     MenubarSubContent,
 } from "@/components/ui/menubar"
-import { useTabStore, TabComponents } from '@/features/layout/stores/tabStore';
-import { TABS } from '@/features/layout/viewModels/useApp';
+import { useTabStore, TabComponents } from '@/app/layout/stores/tabStore';
+import { TABS } from '@/app/layout/viewModels/useApp';
 
 export interface IAction {
     id: string;

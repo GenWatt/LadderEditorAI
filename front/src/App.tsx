@@ -3,10 +3,10 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
-import { ThemeProvider } from './features/theme/context/ThemeProvider'
-import Appbar from './features/appbar/components/Appbar'
+import { ThemeProvider } from './app/theme/context/ThemeProvider'
+import Appbar from './app/appbar/components/Appbar'
 import 'flexlayout-react/style/light.css';
-import useApp from './features/layout/viewModels/useApp'
+import useApp from './app/layout/viewModels/useApp'
 import { Layout } from 'flexlayout-react';
 import ActionBar from './features/ladderEditor/components/ActionBar';
 import { DndProvider } from 'react-dnd';
